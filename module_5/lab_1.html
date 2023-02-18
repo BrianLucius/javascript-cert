@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let contacts = [{
+        name: "Maxwell Wright",
+        phone: "(0191) 719 6495",
+        email: "Curabitur.egestas.nunc@nonummyac.co.uk"
+        }, {
+        name: "Raja Villarreal",
+        phone: "0866 398 2895",
+        email: "posuere.vulputate@sed.com"
+        }, {
+        name: "Helen Richards",
+        phone: "0800 1111",
+        email: "libero@convallis.edu"
+        }];
+    
+    function showContact(contactList, contactNumber) {
+        if (!(contactList instanceof Array)) {
+            console.log('Must pass an array of contacts');
+            return;
+        }
+        if (!contactList[contactNumber]) {
+            console.log('Invalid contact index passed');
+            return;
+        }
+        console.log(`${contactList[contactNumber].name} / ${contactList[contactNumber].phone} / ${contactList[contactNumber].email}`)
+        return;
+    }
+    
+    function showAllContacts(contactList) {
+        if (!(contactList instanceof Array)) {
+            console.log('Must pass an array of contacts');
+            return;
+        }
+        for (contact of contactList) {
+            console.log(`${contact.name} / ${contact.phone} / ${contact.email}`);
+        }
+        return;
+    }
+    
+    function addNewContact(contactsList, name, phone, email) {
+        if (!(contactsList instanceof Array)) {
+            console.log('Must pass an array of contacts')
+            return;
+        }
+        if (!name || !phone || !email ) {
+            console.log('New contact is missing details');
+            return;
+        }
+        contactsList.push({name: name, phone: phone, email: email});
+        return;
+    }
+    
+    let userInput = 0;
+
+    while (userInput < 1 || userInput > 5) {
+        userInput = parseInt(window.prompt("1. Show the first contact\n2. Show the last contact\n3. Show all contacts\n4. Add a new contact\n5. Exit"));
+        switch (userInput) {
+            case 1:
+                showContact(contacts, 0);
+                userInput = 0;
+                break;
+            case 2:
+                let last = contacts.length - 1;
+                showContact(contacts, last);
+                userInput = 0;
+                break;
+            case 3:
+                showAllContacts(contacts);
+                userInput = 0;
+                break;
+            case 4:
+                let name = window.prompt("Enter the contacts name:");
+                let phone = window.prompt("Enter the contacts phone:");
+                let email = window.prompt("Enter the contacts email:");
+                addNewContact(contacts, name, phone, email)
+                userInput = 0;
+                break;
+            case 5:
+                break;
+            default:
+                console.log("Not a valid option...")
+        }
+    }
+</script>
+</html>
